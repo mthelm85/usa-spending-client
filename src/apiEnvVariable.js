@@ -1,3 +1,4 @@
+const Google = process.env.GOOGLE_API
 module.exports = {
-  'Google': process.env.GOOGLE_API
+  Google
 }
