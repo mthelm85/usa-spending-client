@@ -76,7 +76,7 @@ export default {
 
   methods: {
     async fetchData () {
-      // const res = await axios.get('http://localhost:3000/', {
+      // const res = await axios.get('http://localhost:3000/awards', {
       const res = await axios.get('https://usa-spending.herokuapp.com/awards', {
         params: {
           state_code: this.location.stateName,
@@ -140,7 +140,6 @@ export default {
     async reverseGeolocate (lat, lng) {
       const geocode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyADvjrQS1WEJIw7NSd7-9Wvdfo0ylybi3U`).catch(err => console.log(err))
       let countyName = null
-      console.log(geocode)
       geocode.data.results.forEach((x) => {
         if (x.types.includes('administrative_area_level_2')) {
           countyName = x.address_components[0].short_name.replace(' County', '')
