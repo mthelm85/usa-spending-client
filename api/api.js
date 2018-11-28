@@ -24,7 +24,7 @@ app.use(bodyParser.json())
 mongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
   if (err) throw err
   // const db = client.db('usa-spending')
-  const db = client.db('heroku_53chkz70')
+  const db = client.db('heroku_zddmgb1l')
   require('./routes.js')(app, db)
   app.listen(port, () => {
     console.log(`The API is accessible on port ${port}`)
