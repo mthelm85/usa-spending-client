@@ -27,6 +27,7 @@
 <script>
 import axios from 'axios'
 // import apiKeys from '@/apiKeys'
+import apiKey from '@/apiEnvVariable'
 import L from 'leaflet'
 import 'leaflet.markercluster'
 export default {
@@ -138,9 +139,9 @@ export default {
       this.map.map.addLayer(markers)
     },
     async reverseGeolocate (lat, lng) {
-      const geocode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.GOOGLE_API}`).catch(err => console.log(err))
+      const geocode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey.Google}`).catch(err => console.log(err))
       let countyName = null
-      console.log(process.env.GOOGLE_API)
+      console.log(apiKey.Google)
       geocode.data.results.forEach((x) => {
         if (x.types.includes('administrative_area_level_2')) {
           countyName = x.address_components[0].short_name.replace(' County', '')
@@ -153,7 +154,6 @@ export default {
         this.fetchData()
         this.location.countiesViewed.push(countyName)
       }
-      console.log(this.location.countyName, this.location.stateName)
     }
   }
 }
