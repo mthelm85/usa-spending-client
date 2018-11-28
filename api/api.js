@@ -8,7 +8,7 @@ const bodyParser = require('body-parser'),
       serveStatic = require('serve-static')
 
 const app = express()
-
+app.use(serveStatic(__dirname + "/../dist"))
 app.use(cors({
   origin:[
     '*'
@@ -20,7 +20,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 app.use(bodyParser.json())
-app.use(serveStatic(path.join(__dirname, 'dist')))
 
 mongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
   if (err) throw err
