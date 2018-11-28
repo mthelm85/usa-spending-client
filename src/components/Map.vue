@@ -138,8 +138,7 @@ export default {
       this.map.map.addLayer(markers)
     },
     async reverseGeolocate (lat, lng) {
-      const apiKey = process.env.GOOGLE_API
-      const geocode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`).catch(err => console.log(err))
+      const geocode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyADvjrQS1WEJIw7NSd7-9Wvdfo0ylybi3U`).catch(err => console.log(err))
       let countyName = null
       geocode.data.results.forEach((x) => {
         if (x.types.includes('administrative_area_level_2')) {
