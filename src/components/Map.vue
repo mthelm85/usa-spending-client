@@ -82,7 +82,7 @@ export default {
           state_code: this.location.stateName,
           county_name: this.location.countyName
         }
-      })
+      }).catch(err => console.log(err))
       // Push zip codes to a set, convert to array, pass array to API query so we don't
       // have to call the API hundreds of times to get the coords
       let zips = new Set()
@@ -94,7 +94,7 @@ export default {
         params: {
           zips: Array.from(zips)
         }
-      })
+      }).catch(err => console.log(err))
       const zipCoordsArray = zipCoords.data.results
       function returnCoords (zip) {
         return zipCoordsArray.filter(z => z.ZIP === zip)
@@ -138,7 +138,7 @@ export default {
       this.map.map.addLayer(markers)
     },
     async reverseGeolocate (lat, lng) {
-      const geocode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.GOOGLE_API}`)
+      const geocode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.GOOGLE_API}`).catch(err => console.log(err))
       let countyName = null
       geocode.data.results.forEach((x) => {
         if (x.types.includes('administrative_area_level_2')) {
