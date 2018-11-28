@@ -85,6 +85,7 @@ export default {
       }).catch(err => console.log(err))
       // Push zip codes to a set, convert to array, pass array to API query so we don't
       // have to call the API hundreds of times to get the coords
+      console.log(res)
       let zips = new Set()
       for (let i = 0; i < res.data.results.length; i++) {
         zips.add(res.data.results[i].primary_place_of_performance_zip_4.toString().substring(0, 5))
