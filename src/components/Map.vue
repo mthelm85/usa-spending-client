@@ -90,10 +90,8 @@ export default {
         zips.add(res.data.results[i].primary_place_of_performance_zip_4.toString().substring(0, 5))
       }
       // const zipCoords = await axios.get('http://localhost:3000/zip', {
-      const zipCoords = await axios.get('https://usa-spending.herokuapp.com/zip', {
-        params: {
-          zips: Array.from(zips)
-        }
+      const zipCoords = await axios.post('https://usa-spending.herokuapp.com/zips', {
+        zips: Array.from(zips)
       }).catch(err => console.log(err))
       console.log(zipCoords)
       const zipCoordsArray = zipCoords.data.results

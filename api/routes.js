@@ -11,10 +11,10 @@ module.exports = (app, db) => {
     })
   })
 
-  app.get('/zip', (req, res) => {
+  app.post('/zips', (req, res) => {
     db.collection('zip_latlng')
     .find({
-      ZIP: { $in: req.query.zips }
+      ZIP: { $in: req.body.zips }
     })
     .toArray((err, docs) => {
       res.json({ results: docs })
