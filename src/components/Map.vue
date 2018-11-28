@@ -95,6 +95,7 @@ export default {
           zips: Array.from(zips)
         }
       }).catch(err => console.log(err))
+      console.log(zipCoords)
       const zipCoordsArray = zipCoords.data.results
       function returnCoords (zip) {
         return zipCoordsArray.filter(z => z.ZIP === zip)
