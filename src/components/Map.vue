@@ -59,6 +59,7 @@ export default {
     this.map.map = L.map('map', { zoomControl: false })
       .locate({ setView: true, maxZoom: 10 })
       .on('locationfound', (location) => {
+        console.log('Location:' + location)
         this.reverseGeolocate(location.latlng.lat, location.latlng.lng)
       })
       .on('dragend', () => {
@@ -140,6 +141,7 @@ export default {
     async reverseGeolocate (lat, lng) {
       const geocode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.GOOGLE_API}`).catch(err => console.log(err))
       let countyName = null
+      console.log('Geocode: ' + geocode)
       geocode.data.results.forEach((x) => {
         if (x.types.includes('administrative_area_level_2')) {
           countyName = x.address_components[0].short_name.replace(' County', '')
