@@ -95,7 +95,6 @@ export default {
           zips: Array.from(zips)
         }
       }).catch(err => console.log(err))
-      console.log(zipCoords)
       const zipCoordsArray = zipCoords.data.results
       function returnCoords (zip) {
         return zipCoordsArray.filter(z => z.ZIP === zip)
@@ -139,7 +138,8 @@ export default {
       this.map.map.addLayer(markers)
     },
     async reverseGeolocate (lat, lng) {
-      const geocode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyADvjrQS1WEJIw7NSd7-9Wvdfo0ylybi3U`).catch(err => console.log(err))
+      const apiKey = process.env.GOOGLE_API
+      const geocode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`).catch(err => console.log(err))
       let countyName = null
       geocode.data.results.forEach((x) => {
         if (x.types.includes('administrative_area_level_2')) {
