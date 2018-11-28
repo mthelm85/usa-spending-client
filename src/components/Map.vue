@@ -56,7 +56,7 @@ export default {
   },
 
   mounted () {
-    this.map.map = L.map('map', { zoomControl: false })
+    this.map.map = L.map('map', { zoomControl: true })
       .locate({ setView: true, maxZoom: 10 })
       .on('locationfound', (location) => {
         this.reverseGeolocate(location.latlng.lat, location.latlng.lng)
