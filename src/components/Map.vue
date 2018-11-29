@@ -95,6 +95,7 @@ export default {
           zips: Array.from(zips)
         }
       }).catch(err => console.log(err))
+      console.log(`Zip coords: ${zipCoords.data.results}`)
       const zipCoordsArray = zipCoords.data.results
       function returnCoords (zip) {
         return zipCoordsArray.filter(z => z.ZIP === zip)
@@ -152,6 +153,7 @@ export default {
         this.fetchData()
         this.location.countiesViewed.push(countyName)
       }
+      console.log(`${this.location.countyName}, ${this.location.stateName}`)
     }
   }
 }
